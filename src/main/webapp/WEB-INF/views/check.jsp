@@ -7,9 +7,10 @@
     <title>Title</title>
 </head>
 <body>
-<h1>check.jsp파일입니다.</h1>
+<h1>WEB-INF의 check.jsp파일입니다.</h1>
 
-<form action="#">
+<!-- 보낼 경로 작성 , 상대경로로 작성한 것/ 절대경로는 /jsp/validate.jsp-->
+<form action="validate.jsp">
     <label>
         <input type="text" name="age" placeholder="나이를 숫자로 입력!">
     </label>

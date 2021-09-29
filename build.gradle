@@ -28,7 +28,7 @@ dependencies {
 
 	//jsp 라이브러리 추가
 	implementation 'javax.servlet:jstl'
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'//이건 내장톰켓에서 jsp 돌리려면 추가해야함
 }
 
 test {
