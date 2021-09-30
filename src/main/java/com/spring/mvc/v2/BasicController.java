@@ -50,11 +50,12 @@ public class BasicController {
         System.out.println("/basic/join 요청이 들어옴!");
         String userId = request.getParameter("userId");
         String userName = request.getParameter("userName");
-//        String userAge = request.getParameter("userAge");
+        int userAge = Integer.parseInt(request.getParameter("userAge"));
 
 
         System.out.println("userId = " + userId);
         System.out.println("userName = " + userName);
+        System.out.println("userAge = " + userAge);
 
         return "";
     }
@@ -83,7 +84,7 @@ public class BasicController {
 
 
     //화면쪽으로 서버의 데이터를 전달하는 방법
-    @GetMapping("/model")
+    @GetMapping("/model")//Model은 데이터를 담아서 전달하기 위해 사용하는 봉다리같은거........
     public String modelBasic(Model model, int age){
        //클라이언트 쪽으로 데이터를 greet이라는 이름으로 메롱을 담아서 전달
        model.addAttribute("greet", "메롱");
@@ -100,6 +101,7 @@ public class BasicController {
        return "request/res_quiz";//jsp 파일경로
     }
 
+
     @PostMapping("/response/quiz")
     public String login(String userId, String userPw, Model model) {
         System.out.println("로그인 요청 들어옴!");
@@ -111,9 +113,6 @@ public class BasicController {
        }
 
     }
-
-
-
 
 
 }
