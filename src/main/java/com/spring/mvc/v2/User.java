@@ -12,6 +12,7 @@ import java.util.List;
 
 public class User {
 
+    //setter getter만들고 private으로 써야 함
     private String userId;
     private String userPw;
     private String userName;
