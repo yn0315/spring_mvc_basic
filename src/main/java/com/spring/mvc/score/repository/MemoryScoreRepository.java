@@ -5,10 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //메모리에 성적정보들을 모아서 저장해야 한다.
 @Repository//@Component랑 똑같은데 저장소의 의미가 더 명확함//스프링에 저장소 빈(요리재료)으로 등록
@@ -43,9 +40,13 @@ public class MemoryScoreRepository implements  ScoreRepository{
         return scores;
     }
 
+    //점수 꺼내서 보여주는 처리
     @Override
     public Score findOne(int stuNum) {
-        return null;
+
+       return null;
+
+
     }
 
     @Override

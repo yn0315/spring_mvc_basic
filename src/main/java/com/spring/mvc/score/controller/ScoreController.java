@@ -1,6 +1,7 @@
 package com.spring.mvc.score.controller;
 
 import com.spring.mvc.score.domain.Score;
+import com.spring.mvc.score.repository.MemoryScoreRepository;
 import com.spring.mvc.score.repository.ScoreRepository;
 import com.spring.mvc.score.service.ScoreService;
 import lombok.Getter;
@@ -54,6 +55,15 @@ public class ScoreController {
         log.info("점수 삭제요청-");
         scoreRepository.remove(stuNum);
         return "redirect:/score/list";
+    }
+
+    //상세정포 페이지
+    @GetMapping("/score/detail")
+    public String detail( Score score, Model model) {
+
+        register(score);
+        model.addAttribute("score", score);
+        return "/score/detail";
     }
 
 
