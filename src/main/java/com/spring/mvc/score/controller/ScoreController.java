@@ -61,7 +61,10 @@ public class ScoreController {
     @GetMapping("/score/detail")
     public String detail( Score score, Model model) {
 
-        register(score);
+        //findOne호출해서 리턴받아 Score에 대입하고
+        //그 score를 모델을 통해 보내면..???
+//        register(score);
+
         model.addAttribute("score", score);
         return "/score/detail";
     }
