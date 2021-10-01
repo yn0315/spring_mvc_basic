@@ -21,12 +21,28 @@
         font-weight: 700;
         border-bottom: 1px solid skyblue;
     }
+
+    .del-btn {
+        width: 10px;
+        height: 10px;
+        background: red;
+        color: #fff;
+        border-radius: 5px;
+        margin-left: 5px;
+        text-decoration: none;
+        font-size: 0.7em;
+        padding: 6px;
+        
+    }
+    .del-btn:hover {
+        background: orangered;
+    }
 </style>
 </head>
 <body>
 
     <h1>시험 점수 등록</h1>
-    <form action="#" method="POST">
+    <form action="/score/register" method="POST">
         <label>
             # 이름: <input type="text" name = "name">
         </label>
@@ -48,11 +64,16 @@
     <hr>
 
     <ul class="score-list">
-        <li>총 학생 수: xxx명</li>
+        <li>총 학생 수: ${scoreList.size()}명</li>
         
-        <li>
-            # 학번: xxx, 이름: xxx, 국어: xx점, 영어: xx점, 수학: xx점, 총점: xx점, 평균: xx점
-        </li>
+        <c:forEach var = "s" items = "${scoreList}">
+            
+            <li>
+                # 학번: ${s.stuNum}, 이름: <a href="/score/detail">${s.name}</a>, 국어: ${s.kor}점, 영어: ${s.eng}점, 수학: ${s.math}점, 총점: ${s.total}점, 평균: ${s.average}점 <a class= "del-btn" href="/score/delete?stuNum=${s.stuNum}">삭제</a>
+            </li>
+    
+        </c:forEach>
+        
     </ul>
     
 

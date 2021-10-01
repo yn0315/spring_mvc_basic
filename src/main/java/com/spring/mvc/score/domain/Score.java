@@ -20,8 +20,11 @@ public class Score {
     //순차적 학번 부여 정적필드
     private static int seq;//학번 공유해서 누적시켜야 하니까
 
-    public Score() {
+    public Score() {//스프링에서는 기본생성자만 사용...
         this.stuNum = ++seq;//1번부터 시작해야하니까
+    }
+
+    public void calcTotal() {
         this.total = this.kor + this.eng + this.math;
         this.average = Math.round((this.total / 3.0)*100) / 100.0;//long(실수) / double로 해야하니까 100.0으로
     }
@@ -32,5 +35,8 @@ public class Score {
         this.kor = kor;
         this.eng = eng;
         this.math = math;
+        calcTotal();
     }
+
+
 }
