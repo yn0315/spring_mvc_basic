@@ -59,8 +59,8 @@ public class ScoreController {
 
     //상세정포 페이지
     @GetMapping("/score/detail")
-    public String detail( Score score, Model model) {
-
+    public String detail( int stuNum, Model model) {
+        Score score = scoreRepository.findOne(stuNum);
         //findOne호출해서 리턴받아 Score에 대입하고
         //그 score를 모델을 통해 보내면..???
 //        register(score);

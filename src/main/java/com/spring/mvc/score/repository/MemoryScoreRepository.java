@@ -43,8 +43,13 @@ public class MemoryScoreRepository implements  ScoreRepository{
     //점수 꺼내서 보여주는 처리
     @Override
     public Score findOne(int stuNum) {
+        log.info(scoreMap.get(stuNum));
+        Score score = null;
+        for (int i = 0; i < scoreMap.size(); i++) {
+            score = scoreMap.get(stuNum);
+        }
 
-       return null;
+        return score;
 
 
     }
