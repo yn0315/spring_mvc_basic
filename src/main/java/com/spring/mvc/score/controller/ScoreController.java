@@ -63,7 +63,7 @@ public class ScoreController {
         Score score = scoreRepository.findOne(stuNum);
         //findOne호출해서 리턴받아 Score에 대입하고
         //그 score를 모델을 통해 보내면..???
-//        register(score);
+
 
         model.addAttribute("score", score);
         return "/score/detail";
