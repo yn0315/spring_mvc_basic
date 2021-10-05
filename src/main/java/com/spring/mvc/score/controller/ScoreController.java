@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @Log4j2 //로그출력을 도와주는 기능
-//@RequiredArgsConstructor //final필드를 초기화하는 생성자 자동생성
+//@RequiredArgsConstructor //final필드를 초기화하는 생성자 자동생성, 클래스가 하나만 존재할 때 사용!!
 public class ScoreController {
 
     private final ScoreRepository scoreRepository; //의존관계 형성// 한번 결정되면 끝날 때까지 저장소가 바뀌지 않도록 final씀//모든 걸 서비스에 위임하면 삭제...

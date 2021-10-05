@@ -18,7 +18,8 @@ public class JdbcScoreRepository implements ScoreRepository{
     //DB 접속 정보 설정
     private String userId = "spring3";
     private String userPw = "1234";
-    private String dbUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+    //jdbc:oracle:<drivertype>:<user>/<password>@<database>//dbUrl 작성순서
+    private String dbUrl = "jdbc:oracle:thin:@localhost:1521:xe";//oracle jdbc url 검색 후 공식문서 들어가보기
     private String driver = "oracle.jdbc.driver.OracleDriver";//db연결정보를 생성해주는 클래스
 
     @Override
@@ -45,8 +46,9 @@ public class JdbcScoreRepository implements ScoreRepository{
             ResultSet rs = pstmt.executeQuery();
 //            rs.next();//커서를 한 행씩 밑으로 이동하는.....한번하면 첫번째 행으로 이동
 
-            while(rs.next()) scoreList.add(new Score(rs));//컨트롤 알트 l 리팩터링
-
+            while(rs.next()) {
+                scoreList.add(new Score(rs));//컨트롤 알트 l 리팩터링
+            }
         }catch (Exception e) {
             e.printStackTrace();
         }
