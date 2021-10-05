@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 //메모리에 성적정보들을 모아서 저장해야 한다.
-@Repository//@Component랑 똑같은데 저장소의 의미가 더 명확함//스프링에 저장소 빈(요리재료)으로 등록
+@Repository("mr")//@Component랑 똑같은데 저장소의 의미가 더 명확함//스프링에 저장소 빈(요리재료)으로 등록(memoryScoreRepository)
 @Log4j2
 public class MemoryScoreRepository implements  ScoreRepository{
 
@@ -46,8 +46,6 @@ public class MemoryScoreRepository implements  ScoreRepository{
            Score score = scoreMap.get(stuNum);
 
         return score;
-
-
     }
 
     @Override

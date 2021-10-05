@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +18,19 @@ import java.util.List;
 
 @Controller
 @Log4j2 //로그출력을 도와주는 기능
-@RequiredArgsConstructor //final필드를 초기화하는 생성자 자동생성
+//@RequiredArgsConstructor //final필드를 초기화하는 생성자 자동생성
 public class ScoreController {
 
     private final ScoreRepository scoreRepository; //의존관계 형성// 한번 결정되면 끝날 때까지 저장소가 바뀌지 않도록 final씀//모든 걸 서비스에 위임하면 삭제...
     private final ScoreService scoreService;
 
-//    @Autowired//주입
+    @Autowired
+    public ScoreController(@Qualifier("jr") ScoreRepository scoreRepository, ScoreService scoreService) {
+        this.scoreRepository = scoreRepository;
+        this.scoreService = scoreService;
+    }
+
+    //    @Autowired//주입
 //    public ScoreController(ScoreRepository scoreRepository) {
 //        this.scoreRepository = scoreRepository;
 //    }// @RequiredArgsConstructor 쓰면 자동으로 작성해줘서 안 써도 됨
@@ -57,8 +64,8 @@ public class ScoreController {
         return "redirect:/score/list";
     }
 
-    //상세정포 페이지
-    @GetMapping("/score/detail")
+    //상세정보 페이지
+    @GetMapping("/score/detail")//매개변수 sn으로 쓰고 싶으면 @RequestParam("stuNum") int sn,
     public String detail( int stuNum, Model model) {
         Score score = scoreRepository.findOne(stuNum);
         //findOne호출해서 리턴받아 Score에 대입하고

@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 @Setter
 @Getter
 @ToString
@@ -22,6 +25,16 @@ public class Score {
 
     public Score() {//스프링에서는 기본생성자만 사용...
         this.stuNum = ++seq;//1번부터 시작해야하니까
+    }
+
+    public Score(ResultSet rs) throws SQLException {
+        this.stuNum = rs.getInt("stu_num");
+        this.name = rs.getString("stu_name");
+        this.kor = rs.getInt("kor");
+        this.eng = rs.getInt("eng");
+        this.math = rs.getInt("math");
+        this.total = rs.getInt("total");
+        this.average = rs.getDouble("average");
     }
 
     public void calcTotal() {
