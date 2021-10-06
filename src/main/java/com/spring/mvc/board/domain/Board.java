@@ -11,6 +11,8 @@ import java.util.Date;
 @NoArgsConstructor//기본생성자
 public class Board {
 
+    //domain, repository, controller, service -기본구조
+
     private int boardNo; //글번호
     private String writer; //작성자
     private String title; //글제목

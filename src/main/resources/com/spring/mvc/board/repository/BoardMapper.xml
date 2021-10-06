@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--namespace속성에는 사용할 인터페이스의 풀 경로를 적는다-->
+<!--namespace 속성에는 사용할 인터페이스의 풀 경로를 적는다-->
 <mapper namespace="com.spring.mvc.board.repository.BoardMapper">
 
     <resultMap id="boardMap" type="com.spring.mvc.board.domain.Board">
@@ -16,7 +16,7 @@
 
    <select id="getArticles" resultMap="boardMap">
         SELECT * FROM board
-       ORDER BY board_no DESC
+        ORDER BY board_no DESC
     </select>
 
     <select id="getContent" resultMap="boardMap">
@@ -24,12 +24,12 @@
         WHERE board_no #{boardNo}
     </select>
 
-<insert id="insertArticle">
-    INSERT INTO board
-    (board_no, title, content, writer)
-    VALUES
-    (seq_board.nextval, #{title}, #{content}, #{writer})
-</insert>
+    <insert id="insertArticle">
+        INSERT INTO board
+        (board_no, title, content, writer)
+        VALUES
+        (seq_board.nextval, #{title}, #{content}, #{writer})
+    </insert>
 
     <delete id="deleteArticle">
         DELETE FROM board

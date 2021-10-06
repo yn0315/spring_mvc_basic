@@ -12,6 +12,10 @@ import java.util.List;
 @Log4j2
 public class JdbcScoreRepository implements ScoreRepository{
 
+    //JDBC(자바 API): 스프링 없이 자바에서 바로 DB연결하는 방식,
+    //               데이터 인터페이스 베이스고,
+    //               오라클같은 프로그램이 구현
+
     //DB 접속 정보 설정
     private String userId = "spring3";
     private String userPw = "1234";

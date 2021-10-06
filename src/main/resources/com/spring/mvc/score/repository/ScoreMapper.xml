@@ -3,12 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--namespace속성에는 사용할 인터페이스의 풀 경로를 적는다-->
+<!--namespace 속성에는 사용할 인터페이스의 풀 경로를 적는다-->
 <mapper namespace="com.spring.mvc.score.repository.ScoreMapper">
 
     <!--  인터페이스의 추상메서드들의 SQL문장을 적음    -->
     <insert id="save">
-    <!-- 여기는 객체를 들어가니까 #{} 안에는 필드명을 써야함!!! 컬럼명 쓰면 안됨!!-->
+    <!-- 여기는 객체를 들어가니까 #{} 안에는 객체의 필드명을 써야함!!! 컬럼명 쓰면 안됨!!-->
         INSERT INTO score
         VALUES (seq_score.nextval, #{name},#{kor},#{eng},#{math},#{total},#{average})
     </insert>

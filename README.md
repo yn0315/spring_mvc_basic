@@ -76,4 +76,11 @@ public class RootConfig {
 
 </body>
 </html>
+
 ```
+
+## 필수 사이트
+1. spring.io -스프링 공식문서
+2. start.spring.io - 스프링 만드는 사이트
+3. maven repository -라이브러리 받는 곳
+
