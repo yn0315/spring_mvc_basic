@@ -1,7 +1,7 @@
 
-maven repository 라이브러리 받는 곳 즐겨찾기 추가
+maven repository 라이브러리 받는 곳
 spring.io 스프링 공식문서
-start.spring.io 스프링 만드는 곳 즐겨찾기 추가
+start.spring.io 스프링 만드는 곳
 
 <다 만들고 깃허브 처음 올릴 때>
    -shift두번 -> share -> 깃허브 공유

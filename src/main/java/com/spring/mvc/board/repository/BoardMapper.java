@@ -8,6 +8,10 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
 
+
+    //spring으로 DB 연결하기 위해서는
+    //이 패키지 경로와 같은 패키지를 resources에 생성하여 xml파일 만듦
+
     //1. 게시물 목록 조회
     List<Board> getArticles();
 

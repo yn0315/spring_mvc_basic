@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.Instant;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest //테스트시에 스프링 컨테이너를 사용한다.
