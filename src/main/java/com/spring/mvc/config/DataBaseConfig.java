@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = "com.spring.mvc")
 public class DataBaseConfig {
 
+    //마이바티스 하려면 이 클래스 만들어서 이거 만들어 놔야 함
     //db 연결정보, 커넥션풀 설정//스프링을 쓸 때 사용
     @Bean//설정클래스 등록하겠다
     public DataSource dataSource() {

@@ -20,7 +20,7 @@ public class HelloServlet extends HttpServlet {
         System.out.println("헬로서블릿 객체 생성됨!");
     }
 
-    //http요청이 왔을 때 was에 의해 자동호출되는 메서드
+    //http요청이 왔을 때 WAS에 의해 자동호출되는 메서드
     //용도: 핵심 로직을 기술하는 곳
 
     @Override

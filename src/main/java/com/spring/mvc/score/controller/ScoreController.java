@@ -1,11 +1,9 @@
 package com.spring.mvc.score.controller;
 
 import com.spring.mvc.score.domain.Score;
-import com.spring.mvc.score.repository.MemoryScoreRepository;
+import com.spring.mvc.score.repository.ScoreMapper;
 import com.spring.mvc.score.repository.ScoreRepository;
 import com.spring.mvc.score.service.ScoreService;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,8 +22,11 @@ public class ScoreController {
     private final ScoreRepository scoreRepository; //의존관계 형성// 한번 결정되면 끝날 때까지 저장소가 바뀌지 않도록 final씀//모든 걸 서비스에 위임하면 삭제...
     private final ScoreService scoreService;
 
+    private final ScoreMapper scoreMapper;
+
     @Autowired
-    public ScoreController(@Qualifier("jr") ScoreRepository scoreRepository, ScoreService scoreService) {
+    public ScoreController(@Qualifier("jr") ScoreRepository scoreRepository, ScoreService scoreService, ScoreMapper scoreMapper) {
+        this.scoreMapper = scoreMapper;
         this.scoreRepository = scoreRepository;
         this.scoreService = scoreService;
     }
@@ -40,7 +41,8 @@ public class ScoreController {
     //점수프로그램 화면요청
     @GetMapping("/score/list")
     public String scoreList(Model model) {
-        List<Score> scores = scoreRepository.findAll();
+//        List<Score> scores = scoreRepository.findAll();
+        List<Score> scores = scoreMapper.findAll();
         model.addAttribute("scoreList", scores);
         return "score/score-list";
     }
@@ -60,14 +62,16 @@ public class ScoreController {
     @GetMapping("/score/delete")
     public String delete(int stuNum) {
         log.info("점수 삭제요청-");
-        scoreRepository.remove(stuNum);
+//        scoreRepository.remove(stuNum);
+        scoreMapper.remove(stuNum);
         return "redirect:/score/list";
     }
 
     //상세정보 페이지
     @GetMapping("/score/detail")//매개변수 sn으로 쓰고 싶으면 @RequestParam("stuNum") int sn,
     public String detail( int stuNum, Model model) {
-        Score score = scoreRepository.findOne(stuNum);
+//        Score score = scoreRepository.findOne(stuNum);
+        Score score = scoreMapper.findOne(stuNum);
         //findOne호출해서 리턴받아 Score에 대입하고
         //그 score를 모델을 통해 보내면..???
 
