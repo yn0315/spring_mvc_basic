@@ -89,12 +89,12 @@
                     <td>${article.boardNo}</td>
                     <td>${article.writer}</td>
                     <td>
-                        <a href="/board/content">${article.title}</a>
+                        <a href="/board/content?boardNo=${article.boardNo}">${article.title}</a>
                     </td>
                     <td>${article.viewCnt}</td>
                     <td>
 
-                        <a href="/board/delete?boardNo=${article.boardNo}">[삭제]</a>
+                        <a data-board-no="${article.boardNo}" class="del_btn" href="#">[삭제]</a>
 
                     </td>
                 </tr>
@@ -131,6 +131,36 @@
         <p>
             <a href="/board/write">게시글 작성하기</a>
         </p>
+
+        <script>
+
+            //게시물 등록 처리알림
+            const msg = '${msg}';
+            if(msg === 'success') {
+                alert('게시물 등록 성공!');
+            }else if(msg === 'fail'){
+                alert('게시물 등록 실패!');
+            }
+
+            //삭제버튼 클릭이벤트
+  
+            const table = document.querySelector('table');
+           
+
+            table.addEventListener('click', e => {
+
+                if(!e.target.matches('table a.del_btn')) return;
+
+                e.preventDefault();//a태그 링크이동기능 중지
+                //console.log('삭제버튼 클릭됨');
+                const boardNo = e.target.dataset.boardNo;
+
+                if(confirm('정말로 삭제하시겠습니까?')){
+                    location.href='/board/delete?boardNo=' + boardNo;//링크이동기능
+                }
+
+            });
+        </script>
 
 
 

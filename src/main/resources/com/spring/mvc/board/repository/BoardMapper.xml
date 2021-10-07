@@ -21,7 +21,7 @@
 
     <select id="getContent" resultMap="boardMap">
         SELECT * FROM board
-        WHERE board_no #{boardNo}
+        WHERE board_no = #{boardNo}
     </select>
 
     <insert id="insertArticle">
@@ -33,7 +33,7 @@
 
     <delete id="deleteArticle">
         DELETE FROM board
-        WHERE boared_no = #{boardNo}
+        WHERE board_no = #{boardNo}
     </delete>
 
     <update id="modifyArticle">
