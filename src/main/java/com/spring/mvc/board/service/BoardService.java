@@ -5,6 +5,7 @@ import com.spring.mvc.board.repository.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,14 +26,45 @@ public class BoardService {
     public List<Board> getArticles() {
         List<Board> articles = boardMapper.getArticles();
 
+        //3분 이내 신규글 new마크 붙이기
+        for (Board article : articles) {
+
+            //각 게시물들의 등록시간을 읽어오기(밀리초 유닉스타임으로부터 몇 초 지났니..)
+            long regTime = article.getRegDate().getTime();
+
+            //현재시간 읽어오기 마이바티스는 로컬데이트 안됨
+            // (밀리초)
+            long now = System.currentTimeMillis();
+
+            //ex) 초 * 분 * 시간 * 1000
+            if(now- regTime < 60 * 3 * 1000) {
+                article.setNewFlag(true);
+            }
+
+        }//end new mark
+
+        //조회수가 10이 넘어가면 hit마크 붙이기
+        for (Board article : articles) {
+
+
+        }
+
         return articles;
 
     }
 
     //게시글 상세조회
+    @Transactional//둘다 제대로 작동 안할시 자동으로 롤백해줌
     public Board getContent(int boardNo) {
         Board content = boardMapper.getContent(boardNo);
+        boardMapper.upViewCount(boardNo);//조회수 올리기
+
         return content;
+    }
+
+    //게시물 수정
+    public boolean modifyContent(Board board) {
+        return boardMapper.modifyArticle(board);
     }
 
     //게시글 등록

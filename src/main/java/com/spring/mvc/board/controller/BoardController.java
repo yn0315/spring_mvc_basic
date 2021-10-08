@@ -31,7 +31,7 @@ public class BoardController {
         return "board/list";
     }
 
-    //게시물 상세조회요청
+    //게시물 상세조회요청//조회수 10 넘는 글 hit배지달기
     @GetMapping("/content")
     public String content(int boardNo, Model model) {
         log.info("/board/content GET요청발생- 글번호:" + boardNo);
@@ -40,13 +40,33 @@ public class BoardController {
         return "board/content";
     }
 
-    //게시물작성
+    //게시물 수정화면요청
+    @GetMapping("/modify")
+    public String modify(int boardNo, Model model) {
+        log.info("/board/modify GET" + boardNo);
+        Board content = boardService.getContent(boardNo);
+        model.addAttribute("article", content);
+        return "board/modify";
+    }
+
+    //게시물 수정완료처리요청
+    @PostMapping("/modify")
+    public String modify(Board board) {
+        log.info("/board/modify POST!" + board);
+        boardService.modifyContent(board);
+
+        return "redirect:/board/content?boardNo=" + board.getBoardNo();//상세보기로 돌아가게 처리
+    }
+
+
+    //게시물 작성화면
     @GetMapping("/write")
     public String write(Model model) {
         log.info("board/write GET 요청발생");
         return "board/write";
     }
 
+    //게시물 작성
     @PostMapping("/write")
     public String write(Board board, RedirectAttributes ra) {//리다이렉트할 때는 모델 대신 리다이렉트어트리~
         log.info("/board/write POST 요청" + board);
@@ -62,7 +82,7 @@ public class BoardController {
     }
 
 
-    //게시물삭제
+    //게시물 삭제
     @GetMapping("/delete")
     public String delete(int boardNo) {
         log.info("/board/delete GET-"+ boardNo);

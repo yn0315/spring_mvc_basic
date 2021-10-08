@@ -39,26 +39,31 @@
       }
    </style>
 
+   <%@ include file="../include/static-head.jsp" %>
+
 </head>
 
 <body>
+   <%@ include file="../include/header.jsp" %>
 
-   <h1>게시글 등록</h1>
+   <div class="write-container">
+      <h2>게시글 등록</h2>
 
-   <form action="/board/write" method="post">
-      <p>
+      <form class="write-form" action="/board/write" method="post">
+         <div class="input-box">
 
-         # 작성자: <input class="form-control" type="text" name ="writer"><br>
-         # 제목: <input type="text" name="title"><br>
-         # 내용: <br>
-         <textarea rows="5" cols="30" name="content"></textarea>
-         <br>
-         
-      </p>
-      <button type ="submit">등록</button>
-   </form>
+            # 작성자: <input class="form-control" type="text" name="writer"><br>
+            # 제목: <input class="form-control" type="text" name="title"><br>
+            # 내용: <br>
+            <textarea class="form-control" rows="5" cols="30" name="content"></textarea>
+            <br>
 
-   <a href="/board/list">글 목록보기</a>   
+         </div>
+         <button type="submit">등록</button>
+      </form>
+   </div>
+
+   <a href="/board/list">글 목록보기</a>
 
 </body>
 
