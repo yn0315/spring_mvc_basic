@@ -59,12 +59,12 @@ public class BoardService {
     public Board getContent(int boardNo) {
         Board content = boardMapper.getContent(boardNo);
         boardMapper.upViewCount(boardNo);//조회수 올리기
-
         return content;
     }
 
     //게시물 수정
     public boolean modifyContent(Board board) {
+        downViewCount(board.getBoardNo());
         return boardMapper.modifyArticle(board);
     }
 
@@ -78,4 +78,8 @@ public class BoardService {
         return boardMapper.deleteArticle(boardNo);
     }
 
+    //조회수 고정
+    public void downViewCount(int boardNo) {
+       boardMapper.downViewCount(boardNo);
+    }
 }

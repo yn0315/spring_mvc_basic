@@ -31,7 +31,7 @@ public class BoardController {
         return "board/list";
     }
 
-    //게시물 상세조회요청//조회수 10 넘는 글 hit배지달기
+    //게시물 상세조회요청//
     @GetMapping("/content")
     public String content(int boardNo, Model model) {
         log.info("/board/content GET요청발생- 글번호:" + boardNo);
@@ -46,6 +46,7 @@ public class BoardController {
         log.info("/board/modify GET" + boardNo);
         Board content = boardService.getContent(boardNo);
         model.addAttribute("article", content);
+        boardService.downViewCount(boardNo);
         return "board/modify";
     }
 
@@ -54,10 +55,10 @@ public class BoardController {
     public String modify(Board board) {
         log.info("/board/modify POST!" + board);
         boardService.modifyContent(board);
-//        board.setViewCnt(board.getViewCnt()-1);
+        //보드 넘버가 null로 뜸, jsp에서 input type hidden으로 사용자 몰래 넘겨줌
+
         return "redirect:/board/content?boardNo=" + board.getBoardNo();//상세보기로 돌아가게 처리
     }
-
 
     //게시물 작성화면
     @GetMapping("/write")
@@ -77,8 +78,6 @@ public class BoardController {
         }else {
             ra.addFlashAttribute("msg", "fail");
         }
-
-//        board.setViewCnt(board.getViewCnt()-1);
 
         return "redirect:/board/list";
     }

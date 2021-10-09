@@ -22,6 +22,7 @@ public class Board {
 
     private boolean newFlag; //신규게시물 여부 //boolean 은 getter는 is를 붙임
     private boolean hitFlag; //조회수 10이 넘어가는지 여부 //boolean 은 getter는 is를 붙임
+//    private boolean notCnt; //글수정하기, 수정, 목록 누를 때 조회수 카운트 막기 위한 필드
 
 
 }

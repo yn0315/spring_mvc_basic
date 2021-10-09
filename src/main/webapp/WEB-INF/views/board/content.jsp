@@ -52,13 +52,13 @@
                     # 작성자: ${article.writer}<br>
                     # 제목: ${article.title}<br>
                     # 내용: <br>
+                    <!-- disabled 사용자가 입력 못하게 막음 -->
                     <textarea rows="5" cols="30" disabled>${article.content}</textarea>
                 </p>
 
                 <a href="/board/list">글 목록보기</a>&nbsp;
 
-                <a href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
-
+                <a id="notCnt" href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
 
             </div>
         </div>
@@ -121,6 +121,13 @@
             </div>
         </div> <!-- end replies row -->
     </div> <!-- end content container -->
+<!-- <script>
+    const notCnt =document.getElementById('notCnt');
+    notCnt.addEventListener('click', e => {
+
+    })
+</script>
+ -->
 
 </body>
 

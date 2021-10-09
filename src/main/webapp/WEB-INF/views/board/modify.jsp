@@ -46,10 +46,10 @@
                 <h1>${article.boardNo}번 게시물 내용</h1>
 
                 <form action="/board/modify" method="POST">
-                    
-                    <!-- 인풋히든은 사용자 모르게 정보를 보내는 것 -->
+                    <!-- post는 주소에 직접 정보를 적어보낼 수 없어서 보드 넘버가 안 넘어감 -->
+                    <!-- 인풋히든은 사용자 모르게 정보를 보내는 것, 이것으로 컨트롤러에 보드 넘버 보내줌 -->
                     <input type="hidden" name="boardNo" value="${article.boardNo}">
-                    
+         
                     # 글번호: ${article.boardNo}<br>
                     # 작성자: ${article.writer}<br>
                     # 제목: <input type="text" name="title" value = "${article.title}"><br>
@@ -63,8 +63,6 @@
                 <a href="/board/list">글 목록보기</a>&nbsp;
 
            
-
-
             </div>
         </div>
     </div> <!-- end content container -->

@@ -30,5 +30,7 @@ public interface BoardMapper {
     //6. 조회수 상승
     void upViewCount(int boardNo);
 
+    //7. 조회수 고정을 위한 메서드
+    void downViewCount(int boardNo);
 
 }
