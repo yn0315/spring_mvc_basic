@@ -54,7 +54,7 @@ public class BoardController {
     public String modify(Board board) {
         log.info("/board/modify POST!" + board);
         boardService.modifyContent(board);
-
+//        board.setViewCnt(board.getViewCnt()-1);
         return "redirect:/board/content?boardNo=" + board.getBoardNo();//상세보기로 돌아가게 처리
     }
 
@@ -77,6 +77,8 @@ public class BoardController {
         }else {
             ra.addFlashAttribute("msg", "fail");
         }
+
+//        board.setViewCnt(board.getViewCnt()-1);
 
         return "redirect:/board/list";
     }

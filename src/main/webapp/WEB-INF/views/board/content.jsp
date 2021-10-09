@@ -16,28 +16,30 @@
             margin: 20px auto;
             padding: 20px 10px;
         }
-
         .attach-file-list a {
             display: flex;
             flex-direction: column;
         }
-
         .attach-file-list a img {
             width: 100px;
             height: 100px;
             display: block;
         }
-
         .attach-file-list .thumbnail-box {
             display: flex;
         }
+
+        #repleBox {
+            width: 80%;
+        }
     </style>
 
-      <%@ include file="../include/static-head.jsp" %>
 
+    <%@ include file="../include/static-head.jsp" %>
 </head>
 
 <body>
+
     <%@ include file="../include/header.jsp" %>
 
     <div class="container">
@@ -63,7 +65,7 @@
 
         <!-- 첨부파일 영역 -->
         <div class="row">
-            <div class="attach-file-list"></div>
+            <div id="repleBox"class="attach-file-list"></div>
         </div>
 
         <!-- 댓글 영역 -->
@@ -104,15 +106,15 @@
                     <div id="replyCollapse" class="card">
                         <div id="replyData">
                             <!-- 
-                        < JS로 댓글 정보 DIV삽입 > 
-                     -->
+								< JS로 댓글 정보 DIV삽입 > 
+							-->
                         </div>
 
                         <!-- 댓글 페이징 영역 -->
                         <ul class="pagination justify-content-center">
                             <!-- 
-                        < JS로 댓글 페이징 DIV삽입 > 
-                     -->
+								< JS로 댓글 페이징 DIV삽입 > 
+							-->
                         </ul>
                     </div>
                 </div> <!-- end reply content -->

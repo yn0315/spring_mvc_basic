@@ -45,9 +45,10 @@ public class BoardService {
 
         //조회수가 10이 넘어가면 hit마크 붙이기
         for (Board article : articles) {
-
-
-        }
+            if(article.getViewCnt() >= 10) {
+                article.setHitFlag(true);
+            }
+        }//end hit mark
 
         return articles;
 
