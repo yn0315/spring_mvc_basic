@@ -39,7 +39,30 @@
             font-size: 1.1em;
         }
 
-     
+        #title, #delete {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        #title:hover {
+            color: rgb(221, 29, 29);
+            text-decoration-line: underline;
+        }
+
+        #delete:hover {
+            color: rgb(221, 29, 29);
+            text-decoration-line: underline;
+        }
+
+        #gray {
+            background: rgb(87, 82, 82);
+            line-height: 20px;
+        }
+
+        #go {
+            color: inherit;
+        }
+
     </style>
 
     <%@ include file="../include/static-head.jsp" %>
@@ -54,19 +77,19 @@
         <h2>게시글 목록</h2>
 
         <div class="amount">
-            <a href="#">10</a>
-            <a href="#">20</a>
-            <a href="#">30</a>
+            <a id="gray" href="#">10</a>
+            <a id="gray" href="#">20</a>
+            <a id="gray" href="#">30</a>
         </div>
 
-        <table border=" 1">
+        <table class="table table-hover" border=" 1">
             <tr>
-                <th>번호</th>
-                <th>작성자</th>
-                <th>제목</th>
-                <th>작성시간</th>
-                <th>조회수</th>
-                <th>비고</th>
+                <th class="table-dark">번호</th>
+                <th class="table-dark">작성자</th>
+                <th class="table-dark">제목</th>
+                <th class="table-dark">작성시간</th>
+                <th class="table-dark">조회수</th>
+                <th class="table-dark">비고</th>
             </tr>
 
 
@@ -75,8 +98,8 @@
                     <td>${article.boardNo}</td>
                     <td>${article.writer}</td>
                     <td>
-                        <a href="/board/content?boardNo=${article.boardNo}">${article.title}</a>
-                        
+                        <a id ="title" href="/board/content?boardNo=${article.boardNo}">${article.title}</a>
+
                         <!-- newFlag가 트루일때만 new 뜨게, test안쪽에 조건문 씀, jsp의 조건문작성은 c:if -->
                         <c:if test="${article.newFlag}">
                             <span class="badge rounded-pill bg-danger">new</span>
@@ -86,17 +109,17 @@
                         <c:if test="${article.hitFlag}">
                             <span class="badge rounded-pill bg-danger">hit</span>
                         </c:if>
-                        
+
 
                     </td>
                     <td>
                         <!-- a는 오전오후 마킹 요일나오게 하고싶으면 E넣으면 됨 -->
-                        <fmt:formatDate value="${article.regDate}" pattern="yyyy-MM-dd a hh:mm:ss"/>    
+                        <fmt:formatDate value="${article.regDate}" pattern="yyyy-MM-dd a hh:mm:ss" />
                     </td>
                     <td>${article.viewCnt}</td>
                     <td>
 
-                        <a data-board-no="${article.boardNo}" class="del_btn" href="#">[삭제]</a>
+                        <a id ="delete" data-board-no="${article.boardNo}" class="del_btn" href="#">[삭제]</a>
 
                     </td>
                 </tr>
@@ -132,7 +155,7 @@
     </div>
 
     <p>
-        <a href="/board/write">게시글 작성하기</a>
+        <a id ="go" href="/board/write">게시글 작성하기</a>
     </p>
 
     <script>

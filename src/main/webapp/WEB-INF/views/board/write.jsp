@@ -37,6 +37,11 @@
       .uploaded-list .thumbnail-box {
          display: flex;
       }
+      
+      #go {
+            color: inherit;
+        }
+
    </style>
 
    <%@ include file="../include/static-head.jsp" %>
@@ -63,7 +68,7 @@
       </form>
    </div>
 
-   <a href="/board/list">글 목록보기</a>
+   <a id="go" href="/board/list">글 목록보기</a>
 
 </body>
 

@@ -32,6 +32,11 @@
         #repleBox {
             width: 80%;
         }
+
+        #go {
+            color: inherit;
+        }
+
     </style>
 
 
@@ -42,12 +47,12 @@
 
     <%@ include file="../include/header.jsp" %>
 
-    <div class="container">
+    <div class="container article">
         <div class="row">
             <div class="offset-md-1 col-md-10">
                 <h1>${article.boardNo}번 게시물 내용</h1>
 
-                <p>
+                <p id="article">
                     # 글번호: ${article.boardNo}<br>
                     # 작성자: ${article.writer}<br>
                     # 제목: ${article.title}<br>
@@ -56,9 +61,9 @@
                     <textarea rows="5" cols="30" disabled>${article.content}</textarea>
                 </p>
 
-                <a href="/board/list">글 목록보기</a>&nbsp;
+                <a id="go" href="/board/list">글 목록보기</a>&nbsp;
 
-                <a id="notCnt" href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
+                <a id="go" href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
 
             </div>
         </div>
@@ -121,13 +126,7 @@
             </div>
         </div> <!-- end replies row -->
     </div> <!-- end content container -->
-<!-- <script>
-    const notCnt =document.getElementById('notCnt');
-    notCnt.addEventListener('click', e => {
 
-    })
-</script>
- -->
 
 </body>
 

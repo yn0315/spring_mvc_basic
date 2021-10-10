@@ -31,6 +31,10 @@
         .attach-file-list .thumbnail-box {
             display: flex;
         }
+
+        #go {
+            color: inherit;
+        }
     </style>
 
       <%@ include file="../include/static-head.jsp" %>
@@ -56,11 +60,11 @@
                     # 내용: <br>
                     <textarea rows="5" cols="30" name="content">${article.content}</textarea>
                     <br>
-                    <button class="btn btn-primary" type="submit">수정</button>
-                    <a class="btn btn-warning" href="/board/list">목록</a>
+                    <button class="btn btn-outline-secondary" type="submit">수정</button>
+                    <a class="btn btn-dark" href="/board/list">목록</a>
                 </form>
 
-                <a href="/board/list">글 목록보기</a>&nbsp;
+                <a id="go" href="/board/list">글 목록보기</a>&nbsp;
 
            
             </div>
