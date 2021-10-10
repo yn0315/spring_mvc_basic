@@ -35,6 +35,9 @@
         #go {
             color: inherit;
         }
+        #go:hover {
+            color: rgb(221, 29, 29);
+        }
     </style>
 
       <%@ include file="../include/static-head.jsp" %>

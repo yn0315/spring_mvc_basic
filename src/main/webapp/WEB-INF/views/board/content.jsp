@@ -37,6 +37,10 @@
             color: inherit;
         }
 
+        #go:hover {
+            color: rgb(221, 29, 29);
+        }
+
     </style>
 
 

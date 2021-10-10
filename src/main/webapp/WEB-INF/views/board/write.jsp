@@ -37,10 +37,14 @@
       .uploaded-list .thumbnail-box {
          display: flex;
       }
-      
+
       #go {
             color: inherit;
-        }
+      }
+
+      #go:hover {
+         color: rgb(221, 29, 29);
+      }
 
    </style>
 
