@@ -20,8 +20,8 @@ public class Board {
     private int viewCnt; //조회수
     private Date regDate; //글작성시간
 
-    private boolean newFlag; //신규게시물 여부 //boolean 은 getter는 is를 붙임
-    private boolean hitFlag; //조회수 10이 넘어가는지 여부 //boolean 은 getter는 is를 붙임
+    private boolean newFlag; //신규게시물 여부 //boolean 은 getter 사용할 때 is를 붙임
+    private boolean hitFlag; //조회수 10이 넘어가는지 여부
 
 
 

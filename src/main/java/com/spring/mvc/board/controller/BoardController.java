@@ -46,7 +46,7 @@ public class BoardController {
         log.info("/board/modify GET" + boardNo);
         Board content = boardService.getContent(boardNo);
         model.addAttribute("article", content);
-        boardService.downViewCount(boardNo);
+        boardService.downViewCount(boardNo);//수정화면 들어갈 때 조회수 올라가는 버그 잡기 위한 메서드요청
         return "board/modify";
     }
 
