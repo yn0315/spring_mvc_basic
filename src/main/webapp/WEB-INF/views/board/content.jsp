@@ -47,12 +47,12 @@
 
     <%@ include file="../include/header.jsp" %>
 
-    <div class="container article">
+    <div class="container">
         <div class="row">
             <div class="offset-md-1 col-md-10">
                 <h1>${article.boardNo}번 게시물 내용</h1>
 
-                <p id="article">
+                <p>
                     # 글번호: ${article.boardNo}<br>
                     # 작성자: ${article.writer}<br>
                     # 제목: ${article.title}<br>
