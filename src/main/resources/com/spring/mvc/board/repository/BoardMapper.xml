@@ -13,10 +13,33 @@
 
     </resultMap>
 
+<!--1. 페이징 없는 전체조회버전-->
+<!--   <select id="getArticles" resultMap="boardMap">-->
+<!--        SELECT * FROM board-->
+<!--        ORDER BY board_no DESC-->
+<!--    </select>-->
 
-   <select id="getArticles" resultMap="boardMap">
-        SELECT * FROM board
-        ORDER BY board_no DESC
+<!--    2. 페이징 적용 게시물 전체조회-->
+    <select id="getArticles" resultMap="boardMap">
+<!--    CDATA로 감싸는 이유는 마크업 내부에서 특수문자를 문자로 인식시키기 위함, 안에 태그 쓰면 인식 못함, <select>같은.. -->
+<!--        /*+INDEX_DESC(board pk_board)*/는 내림차순으로 정렬하는 명령문 같은 거..?-->
+        <![CDATA[
+        SELECT
+        board_no, writer, title, content, reg_date, view_cnt
+        FROM(SELECT/*+INDEX_DESC(board pk_board)*/
+        ROWNUM RN, board_no, title, writer, content, reg_date, view_cnt
+        FROM board
+        WHERE ROWNUM <=#{pageNum}*#{amount})
+        WHERE RN >(#{pageNum}-1)*#{amount}
+        ]]>
+
+    </select>
+
+<!--    총 게시물 수 조회-->
+<!--    단일컬럼일 경우 resultType에 리턴타입 써주면 됨-->
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM board
     </select>
 
     <select id="getContent" resultMap="boardMap">

@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <style>
-        .pagination {
+        /* .pagination {
             width: 60%;
             margin-top: 10px;
             list-style: none;
@@ -33,10 +33,19 @@
             color: yellowgreen;
         }
 
-        .pagination>li.active>a {
+        /* .pagination>li.active>a {
             font-weight: bold;
             color: orangered;
             font-size: 1.1em;
+        } */
+
+        ul.pagination {
+            width: fit-content;
+            margin: 5px auto;
+        }
+        ul.pagination li.p-active a {
+            background: lightgray;
+            color: #fff;
         }
 
         #title, #delete {
@@ -79,9 +88,9 @@
         <h2>게시글 목록</h2>
 
         <div class="amount">
-            <a id="gray" href="#">10</a>
-            <a id="gray" href="#">20</a>
-            <a id="gray" href="#">30</a>
+            <a id="gray" href="/board/list?amount=10">10</a>
+            <a id="gray" href="/board/list?amount=20">20</a>
+            <a id="gray" href="/board/list?amount=30">30</a>
         </div>
 
         <table class="table table-hover" border=" 1">
@@ -130,13 +139,26 @@
         </table>
     </div>
 
-    <!-- 페이지 영역 -->
-    <ul class="pagination">
+    <!-- 페이지 영역, 영역만 만들어둠 -->
+    <!-- 동적으로 생성돼서 비어있는 거임... -->
+    
+        <ul class="pagination">
 
+            <c:if test= "${maker.prev}">
+          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.beginPage-1}">Previous</a></li>
+        </c:if>
 
-    </ul>
+          <!-- stop에는 i++같은 증감식 end는 이하개념 -->
+          <c:forEach var="i" begin="${maker.beginPage}" end="${maker.endPage}" step="1">
+          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${i}">${i}</a></li>
+        </c:forEach>
 
+        <c:if test= "${maker.next}">
+          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.endPage+1}">Next</a></li>
+        </c:if>
 
+        </ul>
+   
     <!-- 검색창 영역 -->
     <div class="search">
         <form action="/board/list" id="search-form">
@@ -188,6 +210,8 @@
 
         });
 
+        // ul한테 클릭이벤트를 걸었을 때 a태그에 p-active부여 (버블링 이용)
+        
     </script>
 
 

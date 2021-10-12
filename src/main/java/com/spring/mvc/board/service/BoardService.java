@@ -2,6 +2,7 @@ package com.spring.mvc.board.service;
 
 import com.spring.mvc.board.domain.Board;
 import com.spring.mvc.board.repository.BoardMapper;
+import com.spring.mvc.common.paging.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class BoardService {
 //
 
     //게시물 목록 가져오기
-    public List<Board> getArticles() {
-        List<Board> articles = boardMapper.getArticles();
+    public List<Board> getArticles(Page page) {
+        List<Board> articles = boardMapper.getArticles(page);
 
         //3분 이내 신규글 new마크 붙이기
         for (Board article : articles) {
@@ -52,6 +53,10 @@ public class BoardService {
 
         return articles;
 
+    }
+    //총 게시물 수 조회
+    public int getCount() {
+        return boardMapper.getTotalCount();
     }
 
     //게시글 상세조회
