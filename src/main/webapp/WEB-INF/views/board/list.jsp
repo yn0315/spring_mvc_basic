@@ -109,7 +109,7 @@
                     <td>${article.boardNo}</td>
                     <td>${article.writer}</td>
                     <td>
-                        <a id ="title" href="/board/content?boardNo=${article.boardNo}">${article.title}</a>
+                        <a id ="title" href="/board/content?boardNo=${article.boardNo}&pageNum=${maker.page.pageNum}&amount=${maker.page.amount}">${article.title}</a>
 
                         <!-- newFlag가 트루일때만 new 뜨게, test안쪽에 조건문 씀, jsp의 조건문작성은 c:if -->
                         <c:if test="${article.newFlag}">
@@ -145,16 +145,16 @@
         <ul class="pagination">
 
             <c:if test= "${maker.prev}">
-          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.beginPage-1}">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.beginPage-1}&amount=${maker.page.amount}">Previous</a></li>
         </c:if>
 
           <!-- stop에는 i++같은 증감식 end는 이하개념 -->
           <c:forEach var="i" begin="${maker.beginPage}" end="${maker.endPage}" step="1">
-          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${i}">${i}</a></li>
+          <li data-page="${i}" class="page-item"><a class="page-link" href="/board/list?pageNum=${i}&amount=${maker.page.amount}">${i}</a></li>
         </c:forEach>
 
         <c:if test= "${maker.next}">
-          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.endPage+1}">Next</a></li>
+          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.endPage+1}&amount=${maker.page.amount}">Next</a></li>
         </c:if>
 
         </ul>
@@ -212,6 +212,24 @@
 
         // ul한테 클릭이벤트를 걸었을 때 a태그에 p-active부여 (버블링 이용)
         
+        //현재 위치한 페이지 li태그에 클래스 p-active를 부여하는 함수
+        function appendPageActive(curPageNum) {
+            const $ul = document.querySelector('.pagination');
+            for(let $li of [...$ul.children]) {
+
+                //모든 li들 중에 data-page속성값이 현재 요청페이지 번호와 같다면
+
+                if ($li.dataset.page === curPageNum) {
+                    $li.classList.add('p-active');
+                    break;
+                }
+            }
+        }
+        //메인실행부
+        (function() {
+            appendPageActive('${maker.page.pageNum}');
+
+        })();
     </script>
 
 

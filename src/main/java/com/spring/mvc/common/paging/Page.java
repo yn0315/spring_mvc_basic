@@ -11,12 +11,13 @@ public class Page {
 
     private int pageNum; //페이지 번호
     private int amount; //한 페이지당 게시물 수
+    private String type; //검색조건
+    private String keyword = ""; //검색어
 
 //    기본생성자를 부른 다음 setter를 씀....
     public Page() {
 //  자동으로 1페이지를 보여주도록..
-    this.pageNum = 1;
-    this.amount = 10;
+    this(1,10);
     }
 
     public Page(int pageNum) {
@@ -29,6 +30,14 @@ public class Page {
 
     public Page(int pageNum, int amount) {
         this.pageNum = pageNum;
+        this.amount = amount;
+    }
+
+    public void setAmount(int amount) {
+        if(amount <= 0 || amount > 100) {
+            this.amount = 10;
+            return;
+        }
         this.amount = amount;
     }
 }
