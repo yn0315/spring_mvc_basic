@@ -88,9 +88,9 @@
         <h2>게시글 목록</h2>
 
         <div class="amount">
-            <a id="gray" href="/board/list?amount=10">10</a>
-            <a id="gray" href="/board/list?amount=20">20</a>
-            <a id="gray" href="/board/list?amount=30">30</a>
+            <a id="gray" href="/board/list?amount=10&type=${maker.page.type}&keyword=${maker.page.keyword}">10</a>
+            <a id="gray" href="/board/list?amount=20&type=${maker.page.type}&keyword=${maker.page.keyword}">20</a>
+            <a id="gray" href="/board/list?amount=30&type=${maker.page.type}&keyword=${maker.page.keyword}">30</a>
         </div>
 
         <table class="table table-hover" border=" 1">
@@ -109,7 +109,7 @@
                     <td>${article.boardNo}</td>
                     <td>${article.writer}</td>
                     <td>
-                        <a id ="title" href="/board/content?boardNo=${article.boardNo}&pageNum=${maker.page.pageNum}&amount=${maker.page.amount}">${article.title}</a>
+                        <a id ="title" href="/board/content?boardNo=${article.boardNo}&pageNum=${maker.page.pageNum}&amount=${maker.page.amount}&type=${maker.page.type}&keyword=${maker.page.keyword}">${article.title}</a>
 
                         <!-- newFlag가 트루일때만 new 뜨게, test안쪽에 조건문 씀, jsp의 조건문작성은 c:if -->
                         <c:if test="${article.newFlag}">
@@ -145,16 +145,16 @@
         <ul class="pagination">
 
             <c:if test= "${maker.prev}">
-          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.beginPage-1}&amount=${maker.page.amount}">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.beginPage-1}&amount=${maker.page.amount}&type=${maker.page.type}&keyword=${maker.page.keyword}">Previous</a></li>
         </c:if>
 
           <!-- stop에는 i++같은 증감식 end는 이하개념 -->
           <c:forEach var="i" begin="${maker.beginPage}" end="${maker.endPage}" step="1">
-          <li data-page="${i}" class="page-item"><a class="page-link" href="/board/list?pageNum=${i}&amount=${maker.page.amount}">${i}</a></li>
+          <li data-page="${i}" class="page-item"><a class="page-link" href="/board/list?pageNum=${i}&amount=${maker.page.amount}&type=${maker.page.type}&keyword=${maker.page.keyword}">${i}</a></li>
         </c:forEach>
 
         <c:if test= "${maker.next}">
-          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.endPage+1}&amount=${maker.page.amount}">Next</a></li>
+          <li class="page-item"><a class="page-link" href="/board/list?pageNum=${maker.endPage+1}&amount=${maker.page.amount}&type=${maker.page.type}&keyword=${maker.page.keyword}">Next</a></li>
         </c:if>
 
         </ul>
@@ -162,16 +162,18 @@
     <!-- 검색창 영역 -->
     <div class="search">
         <form action="/board/list" id="search-form">
+    <!-- 20, 30개씩 보다가 검색하면 풀리니까 amount를 몰래 보내줌 -->
+            <input type="hidden" name="amount" value="${maker.page.amount}">
 
             <select name="type">
-                <option value="title">제목</option>
-                <option value="content">내용</option>
-                <option value="writer">작성자</option>
-                <option value="titleContent">제목+내용
+                <option value="title" ${maker.page.type =='title' ? 'selected' : ''}>제목</option>
+                <option value="content"  ${maker.page.type =='content' ? 'selected' : ''}>내용</option>
+                <option value="writer"  ${maker.page.type =='writer' ? 'selected' : ''}>작성자</option>
+                <option value="titleContent"  ${maker.page.type =='titleContent' ? 'selected' : ''}>제목+내용
                 </option>
             </select>
 
-            <input type="text" name="keyword" placeholder="검색어를 입력!" value="">
+            <input type="text" name="keyword" placeholder="검색어를 입력!" value="${maker.page.keyword}">
 
             <button type="submit">검색</button>
 

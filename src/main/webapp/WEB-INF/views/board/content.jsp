@@ -64,8 +64,8 @@
                     <!-- disabled 사용자가 입력 못하게 막음 -->
                     <textarea rows="5" cols="30" disabled>${article.content}</textarea>
                 </p>
-
-                <a id="go" href="/board/list?pageNum=${page.pageNum}&amount=${page.amount}">글 목록보기</a>&nbsp;
+  
+                <a id="go" href="/board/list?pageNum=${page.pageNum}&amount=${page.amount}&type=${page.type}&keyword=${page.keyword}">글 목록보기</a>&nbsp;
 
                 <a id="go" href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
 
