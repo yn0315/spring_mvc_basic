@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,26 +41,27 @@ class ReplyMapperTest {
         assertTrue(list.size() == 20);
     }
 
-//    @Test
-//    @DisplayName("특정 게시물을 수정할 수 있어야 한다.")
-//    void updateTest() {
-//        Reply reply = replyMapper.read(15);
-//        reply.setReplyText("수정된 댓글");
-//
-//        replyMapper.update(reply);
-//
-//        assertEquals(reply.getReplyText(), replyMapper.read(15).getReplyText());
-//    }
-//
-//    @Test
-//    @DisplayName("특정 게시물을 삭제할 수 있어야 한다.")
-//    @Transactional @Rollback
-//    void deleteTest() {
-//        replyMapper.delete(11);
-//        replyMapper.delete(12);
+    @Test
+    @DisplayName("특정 게시물을 수정할 수 있어야 한다.")
+    void updateTest() {
+        Reply reply = replyMapper.read(15);
+        reply.setReplyText("수정된 댓글");
 
-//        assertTrue(replyMapper.getList(322).size() == 16);
-//    }
+        replyMapper.update(reply);
+
+        assertEquals(reply.getReplyText(), replyMapper.read(15).getReplyText());
+    }
+
+    @Test
+    @DisplayName("특정 게시물을 삭제할 수 있어야 한다.")
+    @Transactional
+    @Rollback//테스트시에만 삭제되는 거라 실제 db에서는 안 날아감
+    void deleteTest() {
+        replyMapper.delete(11);
+        replyMapper.delete(12);
+
+        assertTrue(replyMapper.getList(309).size() == 18);
+    }
 
 
 }
