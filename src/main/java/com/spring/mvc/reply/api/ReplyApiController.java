@@ -1,5 +1,7 @@
 package com.spring.mvc.reply.api;
 
+import com.spring.mvc.common.paging.Page;
+import com.spring.mvc.common.paging.PageMaker;
 import com.spring.mvc.reply.domain.Reply;
 import com.spring.mvc.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -22,12 +26,13 @@ public class ReplyApiController {
     private final ReplyService replyService;
 
     //댓글 목록 조회 요청처리
-    @GetMapping("/{boardNo}")              //경로에서 변수 빼오기
-    public ResponseEntity<List<Reply>> list(@PathVariable int boardNo) {//비동기로 하는 것ResponseEntity...
+    @GetMapping("/{boardNo}/{page}")                       //경로에서 변수 빼오기
+    public ResponseEntity <Map<String, Object>> list(@PathVariable int boardNo, @PathVariable("page") int pageNum) {//비동기로 하는 것ResponseEntity...
         log.info("/api/v1/reply/" + boardNo + "GET!");
-        List<Reply> replyList = replyService.getList(boardNo);
+        Page page = new Page(pageNum, 10);
+        Map<String, Object> replyList = replyService.getList(boardNo, page);
 
-        return new ResponseEntity<>(replyList, OK);
+        return new ResponseEntity<>(replyList, OK);//비동기는 두개를 리턴 못함 .. 두개를 묶어서 보내야함
     }
 
     //댓글 등록 처리 요청
