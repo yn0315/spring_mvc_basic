@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/check")//check로 들어오는 거 받는다
+@WebServlet("/check123")//check로 들어오는 거 받는다
 public class CheckServlet extends HelloServlet{
 
     @Override              //요청정보req로 들어감

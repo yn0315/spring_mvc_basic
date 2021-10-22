@@ -70,8 +70,9 @@
                 <a id="go"
                     href="/board/list?pageNum=${page.pageNum}&amount=${page.amount}&type=${page.type}&keyword=${page.keyword}">글
                     목록보기</a>&nbsp;
-
-                <a id="go" href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
+                <c:if test="${loginUser.auth =='ADMIN' || loginUser.account == article.writer}">
+                    <a id="go" href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
+                </c:if>
 
             </div>
         </div>
@@ -219,7 +220,7 @@
             }
 
             //댓글 페이지 태그 생성 배치함수
-            function makePageDOM(pageInfo) {//maker를 pageInfo라는 변수에 넣어서 받음
+            function makePageDOM(pageInfo) { //maker를 pageInfo라는 변수에 넣어서 받음
                 let tag = "";
 
                 const begin = pageInfo.beginPage;
@@ -234,7 +235,8 @@
                 //페이지 번호 리스트 만들기
                 for (let i = begin; i <= end; i++) {
                     const active = (pageInfo.page.pageNum === i) ? 'p-active' : '';
-                    tag += "<li class='page-item'" + active +"><a class='page-link page-custom " + "' href='" + i +
+                    tag += "<li class='page-item'" + active + "><a class='page-link page-custom " + "' href='" +
+                        i +
                         "'>" +
                         i + "</a></li>";
                 }
@@ -300,8 +302,9 @@
             //페이지 버튼 클릭 이벤트
             $('.pagination').on('click', 'li a', e => {
                 e.preventDefault(); //태그고유기능중지
-                getReplyList(e.target.getAttribute('href'));//href에 페이지 번호 심어놔서 ..textcontent에 쓰면 이전다음에 숫자를 못 심어놔서
-                
+                getReplyList(e.target.getAttribute(
+                'href')); //href에 페이지 번호 심어놔서 ..textcontent에 쓰면 이전다음에 숫자를 못 심어놔서
+
             })
 
             //페이지 진입시 댓글목록 불러오기
